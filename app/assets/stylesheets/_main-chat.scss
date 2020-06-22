@@ -1,0 +1,102 @@
+$blue: #38aef0;
+
+.main-chat {
+  width: calc(100vw - 300px);
+  height: 100vh;
+  background-color: #ffffff;
+  float: right;
+  .main-header {
+    height: 100px;
+    border-bottom: solid 1px #eeeeee;
+    padding: 0px 40px;
+    display: flex;
+    justify-content: space-between;
+    &__groupe-box {
+      margin-top: 35px;
+      &__groupe-name {
+        color: #333333;
+        font-size: 20px;
+        margin-bottom: 15px;
+      }
+      &__member-name {
+        color: #999999;
+        font-size: 12px;
+      }
+    }
+    &__edit-box {
+      margin: 28px;
+      a {
+        text-decoration: none;
+      }
+      &__edit-btn {
+        width: 72px;
+        height: 40px;
+        line-height: 40px;
+        border: $blue 1px solid;
+        padding: 0px 20px;
+        color: $blue;
+        font-size: 16px;
+      }
+    }
+  }
+  .main-message {
+    background-color: #fafafa;
+    height: calc(100vh - 100px - 90px);
+    padding: 35px 0px 0px 40px;
+    &__user-info {
+      display: flex;
+      margin-bottom: 12px;
+      &__username {
+        color: #333333;
+        font-size: 16px;
+      }
+      &__date-time {
+        color: #999999;
+        font-size: 12px;
+        margin-left: 10px;
+      }
+    }
+    &__message-box {
+      color: #434A54;
+      font-size: 14px;
+      margin-bottom: 46px;
+    }
+  }
+  .main-form {
+    background-color: #d2d2d2;
+    height: 90px;
+    padding: 20px 40px;
+    form {
+      display: flex;
+      .input-box{
+        display: flex;
+        position: relative;
+        width: 100%;
+        &__text{
+          height: 50px;
+          width: 100%;
+          padding: 0px 40px 0px 10px;
+          color: #434a54;;
+          border-style: none;
+        }
+        &__image {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          font-size: 1.3rem;
+          cursor: pointer;
+          &__file {
+            display: none;
+          }
+        }
+      }
+      .submit-btn {
+        width: 100px;
+        margin-left: 15px;
+        background-color: $blue;
+        padding: 0px 30px;
+        color: #ffffff;
+      }
+    }
+  }
+}
