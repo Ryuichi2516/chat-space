@@ -4,13 +4,14 @@
       .side-header__username-box__username
         = current_user.name
       .side-header__username-box__icons
-        = link_to "#", class:"edit" do
+        = link_to new_group_path, class:"edit" do
           = icon("far", "edit")
         = link_to edit_user_path(current_user), class:"cog" do
           = icon("fas", "cog")
   .side-groupe
-    .side-groupe__groupe-name techcamp
-    .side-groupe__message-box まだメッセージがありません
-    .side-groupe__groupe-name techcamp
-    .side-groupe__message-box まだメッセージがありません
+    - current_user.groups.each do |group|
+      = link_to '#' do
+        .side-groupe__groupe-name
+          = group.name
+        .side-groupe__message-box まだメッセージがありません
 
