@@ -4,6 +4,7 @@
       .main-header__groupe-box__groupe-name 
         = @group.name
       .main-header__groupe-box__member-name
+        Member:
         - @group.group_users.each do |group_user|
           = group_user.user.name
     .main-header__edit-box

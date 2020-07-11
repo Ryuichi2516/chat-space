@@ -43,6 +43,7 @@ $blue: #38aef0;
     background-color: #fafafa;
     height: calc(100vh - 100px - 90px);
     padding: 35px 0px 0px 40px;
+    overflow: scroll;
     &__user-info {
       display: flex;
       margin-bottom: 12px;
