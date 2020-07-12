@@ -44,15 +44,15 @@ $(function(){
       contentType: false
     })
     .done(function(data){
-      console.log(data);
       var html = buildHTML(data);
       $(".main-message").append(html);
       $('form')[0].reset();
       $('.main-message').animate({ scrollTop: $('.main-message')[0].scrollHeight});
-      $('.submit-btn').attr('disabled', false);
     })
     .fail(function() {
       alert("メッセージ送信に失敗しました");
+    })
+    .always(function(){
       $('.submit-btn').attr('disabled', false);
     });
   })
