@@ -2,7 +2,7 @@ $(function(){
   function buildHTML(message){
     if ( message.image ) {
       var html =
-       `<div class="main-message__user-info">
+       `<div class="main-message__user-info" data-message-id=${message.id}>
           <div class="main-message__user-info__username ">
             ${message.user_name}
           </div>
@@ -10,22 +10,22 @@ $(function(){
             ${message.created_at}
           </div>
         </div>
-        <div class="main-message__message-box">
+        <div class="main-message__message-box" data-message-id=${message.id}>
           ${message.content}
         </div>
-        <img src=${message.image} >`
+        <img src=${message.image}>`
       return html;
     } else {
       var html =
-       `<div class="main-message__user-info">
-          <div class="main-message__user-info__username ">
+       `<div class="main-message__user-info" data-message-id=${message.id}>
+          <div class="main-message__user-info__username">
             ${message.user_name}
           </div>
           <div class="main-message__user-info__date-time">
             ${message.created_at}
           </div>
         </div>
-        <div class="main-message__message-box">
+        <div class="main-message__message-box" data-message-id=${message.id}>
           ${message.content}
         </div>`
       return html;
@@ -56,4 +56,29 @@ $(function(){
       $('.submit-btn').attr('disabled', false);
     });
   })
-})
+  var reloadMessages = function() {
+    var last_message_id = $('.main-message__user-info:last').data("message-id");
+    $.ajax({
+      url: "api/messages",
+      type: 'get',
+      dataType: 'json',
+      data: {id: last_message_id}
+    })
+    .done(function(messages) {
+      if (messages.length !== 0) {
+        var insertHTML = '';
+        $.each(messages, function(i, message) {
+          insertHTML += buildHTML(message)
+        });
+        $('.main-message').append(insertHTML);
+        $('.main-message').animate({ scrollTop: $('.main-message')[0].scrollHeight});
+      }
+    })
+    .fail(function() {
+      alert('error');
+    });
+  };
+  if (document.location.href.match(/\/groups\/\d+\/messages/)) {
+    setInterval(reloadMessages, 7000);
+  }
+});
